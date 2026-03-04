@@ -1,0 +1,37 @@
+{
+	"name": "@trustwallet/connect-bip122-core",
+	"version": "0.0.0-alpha.11",
+	"description": "Bitcoin namespace implementation for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"bitcoin"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"@trustwallet/connect-core": "workspace:*",
+		"@trustwallet/connect-bip122-types": "workspace:*",
+		"@trustwallet/connect-utils": "workspace:*"
+	}
+}

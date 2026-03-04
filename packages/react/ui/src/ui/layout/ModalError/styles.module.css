@@ -1,0 +1,9 @@
+.error {
+	background: rgba(240, 61, 62, 0.1);
+	border: 1px solid rgba(240, 61, 62, 0.3);
+	color: var(--tcui-danger);
+	border-radius: var(--tcui-radius);
+	padding: 12px 14px;
+	font-size: 14px;
+	line-height: 1.5;
+}

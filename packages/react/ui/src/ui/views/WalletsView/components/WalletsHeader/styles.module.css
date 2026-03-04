@@ -1,0 +1,6 @@
+.sectionSub {
+	font-size: 13px;
+	color: var(--tcui-text-secondary);
+	margin: 4px 0 0;
+	line-height: 1.5;
+}

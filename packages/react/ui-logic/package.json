@@ -1,0 +1,58 @@
+{
+	"name": "@trustwallet/connect-ui-logic",
+	"version": "0.0.0-alpha.11",
+	"description": "React UI logic layer for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./walletConnect": {
+			"types": "./dist/walletConnect.d.ts",
+			"import": "./dist/walletConnect.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"react",
+		"ui-logic"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"@trustwallet/connect-headless": "workspace:*",
+		"@trustwallet/connect-utils": "workspace:*",
+		"@trustwallet/connect-walletconnect": "workspace:*"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0",
+		"@trustwallet/connect-walletconnect": "workspace:*"
+	},
+	"peerDependenciesMeta": {
+		"@trustwallet/connect-walletconnect": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@types/react": "19.2.7",
+		"@types/react-dom": "19.2.3",
+		"react": "19.2.3",
+		"react-dom": "19.2.3"
+	}
+}

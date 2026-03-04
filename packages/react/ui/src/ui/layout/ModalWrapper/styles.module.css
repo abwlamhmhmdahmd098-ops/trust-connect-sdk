@@ -1,0 +1,26 @@
+.modal {
+	width: 100%;
+	max-width: 400px;
+	max-height: calc(100vh - 32px);
+	background: var(--tcui-bg);
+	border: 1px solid var(--tcui-border);
+	border-radius: var(--tcui-radius-lg);
+	box-shadow: var(--tcui-shadow-lg);
+	color: var(--tcui-text);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.modal {
+		max-width: 100%;
+		max-height: 90vh;
+		height: 80vh;
+		border-radius: 16px 16px 0 0;
+		border: none;
+		border-top: 1px solid var(--tcui-border);
+		animation: slideUpMobile 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+}

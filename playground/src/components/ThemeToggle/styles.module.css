@@ -1,0 +1,49 @@
+.themeToggle {
+	background: transparent;
+	border: none;
+	color: var(--tcui-text);
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	transition: all 0.15s ease;
+	font-family: var(--tcui-font-family);
+	padding: 0;
+}
+
+.icon {
+	width: 40px;
+	height: 40px;
+	border-radius: var(--tcui-radius-full);
+}
+
+.icon:hover {
+	background: var(--tcui-card-hover);
+}
+
+.icon:active {
+	transform: scale(0.95);
+}
+
+.button {
+	background: var(--tcui-card);
+	border: 1px solid var(--tcui-border);
+	border-radius: var(--tcui-radius-full);
+	padding: 10px 16px;
+	height: 40px;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.button:hover {
+	background: var(--tcui-card-hover);
+}
+
+.button:active {
+	transform: scale(0.98);
+}
+
+.themeToggle svg {
+	flex-shrink: 0;
+}

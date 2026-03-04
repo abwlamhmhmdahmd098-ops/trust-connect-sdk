@@ -1,0 +1,8 @@
+.wcTitle {
+	margin-top: 24px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--tcui-text-secondary);
+	margin-bottom: 0; /* force margin */
+	text-align: center;
+}

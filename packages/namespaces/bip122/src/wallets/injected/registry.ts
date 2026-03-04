@@ -1,0 +1,88 @@
+import { ChainReference, RegistryBase, WalletAdapterBase } from '@trustwallet/connect-core'
+import { UnisatWalletAPI } from './unisat/types'
+import { XverseWalletAPI } from './xverse/types'
+import { UnisatWallet } from './unisat/wallet'
+import { XverseWallet } from './xverse/wallet'
+import { OKXWalletAPI } from './okx/types'
+
+export class InjectedRegistry extends RegistryBase {
+	protected wallets: WalletAdapterBase[] = []
+	private chainRef: ChainReference
+
+	constructor({ chainRef }: { chainRef: ChainReference }) {
+		super()
+		this.chainRef = chainRef
+		this.start()
+	}
+
+	protected start(): Promise<void> | void {
+		if (typeof window === 'undefined') return
+
+		const wallets: WalletAdapterBase[] = []
+		const okxProvider: OKXWalletAPI | undefined = window.okxwallet?.bitcoin
+		const unisat: UnisatWalletAPI | undefined = window.unisat_wallet || window.unisat
+		const xverseProvider: XverseWalletAPI | undefined = window.XverseProviders?.BitcoinProvider
+		const bitkeep = window.bitkeep?.unisat
+		const binance = window.binancew3w?.bitcoin
+
+		if (binance) {
+			// binance uses the same interface as Unisat.
+			wallets.push(
+				new UnisatWallet({
+					id: 'com.binance.wallet',
+					name: 'Binance Wallet',
+					icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMEIwRTExIi8+CjxwYXRoIGQ9Ik01IDE1TDcuMjU4MDYgMTIuNzQxOUw5LjUxNjEzIDE1TDcuMjU4MDYgMTcuMjU4MUw1IDE1WiIgZmlsbD0iI0YwQjkwQiIvPgo8cGF0aCBkPSJNOC44NzA5NyAxMS4xMjlMMTUgNUwyMS4xMjkgMTEuMTI5TDE4Ljg3MSAxMy4zODcxTDE1IDkuNTE2MTNMMTEuMTI5IDEzLjM4NzFMOC44NzA5NyAxMS4xMjlaIiBmaWxsPSIjRjBCOTBCIi8+CjxwYXRoIGQ9Ik0xMi43NDE5IDE1TDE1IDEyLjc0MTlMMTcuMjU4MSAxNUwxNSAxNy4yNTgxTDEyLjc0MTkgMTVaIiBmaWxsPSIjRjBCOTBCIi8+CjxwYXRoIGQ9Ik0xMS4xMjkgMTYuNjEyOUw4Ljg3MDk3IDE4Ljg3MUwxNSAyNUwyMS4xMjkgMTguODcxTDE4Ljg3MSAxNi42MTI5TDE1IDIwLjQ4MzlMMTEuMTI5IDE2LjYxMjlaIiBmaWxsPSIjRjBCOTBCIi8+CjxwYXRoIGQ9Ik0yMC40ODM5IDE1TDIyLjc0MTkgMTIuNzQxOUwyNSAxNUwyMi43NDE5IDE3LjI1ODFMMjAuNDgzOSAxNVoiIGZpbGw9IiNGMEI5MEIiLz4KPC9zdmc+Cg==',
+					api: binance,
+					chainRef: this.chainRef,
+				}),
+			)
+		}
+
+		if (bitkeep) {
+			// bitkeep uses the same interface as Unisat.
+			wallets.push(
+				new UnisatWallet({
+					id: 'com.bitget.web3',
+					name: 'Bitget Wallet',
+					icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSIjMDAxRjI5Ii8+CjxwYXRoIGQ9Ik0yMTkuOTQ4IDk1LjcwMjJDMjAxLjYyMyA5NS42OTI5IDE4My4zMyA5NS42ODM1IDE2NC45NDEgOTUuNzExNkMxNTMuODIyIDk1LjcxMTYgMTQ5LjY1MSAxMDkuNjcxIDE1Ny45MjEgMTE3LjkzOUwyODMuMDk4IDI0My4xMTdDMjg3LjAwNCAyNDYuNjkgMjg5LjQ0MSAyNTAuNTc0IDI4OS41MyAyNTUuNjkzQzI4OS40NDEgMjYwLjgxMiAyODcuMDA0IDI2NC42OTYgMjgzLjA5OCAyNjguMjY5TDE1Ny45MjEgMzkzLjQ0NkMxNDkuNjUxIDQwMS43MTUgMTUzLjgyMiA0MTUuNjc0IDE2NC45NDEgNDE1LjY3NEMxODMuMzMgNDE1LjcwMiAyMDEuNjIzIDQxNS42OTMgMjE5Ljk0OCA0MTUuNjgzQzIyOS4xMjIgNDE1LjY3OSAyMzguMzA1IDQxNS42NzQgMjQ3LjUxMSA0MTUuNjc0QzI1OS41NTUgNDE1LjY3NCAyNjYuNzIgNDA5LjI0IDI3My4xNTQgNDAyLjgwNUwzODYuMDQ3IDI4OS45MTJDMzk1LjA1NyAyODAuOTAyIDQwMy4xMTkgMjY4LjkzOSA0MDMuMDA5IDI1NS42OTNDNDAzLjExOSAyNDIuNDQ3IDM5NS4wNTcgMjMwLjQ4NCAzODYuMDQ3IDIyMS40NzRMMjczLjE1NCAxMDguNThDMjY2LjcyIDEwMi4xNDYgMjU5LjU1NSA5NS43MTE2IDI0Ny41MTEgOTUuNzExNkMyMzguMzA1IDk1LjcxMTYgMjI5LjEyMiA5NS43MDY5IDIxOS45NDggOTUuNzAyMloiIGZpbGw9IiMwMEYwRkYiLz4KPC9zdmc+Cg==',
+					api: bitkeep,
+					chainRef: this.chainRef,
+				}),
+			)
+		}
+		if (okxProvider) {
+			// OKX uses almost the same interface as Unisat.
+			wallets.push(
+				new UnisatWallet({
+					id: 'com.okex.wallet',
+					name: 'OKX Wallet',
+					icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJDSURBVHgB7Zq9jtpAEMfHlhEgQLiioXEkoAGECwoKxMcTRHmC5E3IoyRPkPAEkI7unJYmTgEFTYwA8a3NTKScLnCHN6c9r1e3P2llWQy7M/s1Gv1twCP0ej37dDq9x+Zut1t3t9vZjDEHIiSRSPg4ZpDL5fxkMvn1cDh8m0wmfugfO53OoFQq/crn8wxfY9EymQyrVCqMfHvScZx1p9ls3pFxXBy/bKlUipGPrVbLuQqAfsCliq3zl0H84zwtjQrOw4Mt1W63P5LvBm2d+Xz+YzqdgkqUy+WgWCy+Mc/nc282m4FqLBYL+3g8fjDxenq72WxANZbLJeA13zDX67UDioL5ybXwafMYu64Ltn3bdDweQ5R97fd7GyhBQMipx4POeEDHIu2LfDdBIGGz+hJ9CQ1ABjoA2egAZPM6AgiCAEQhsi/C4jHyPA/6/f5NG3Ks2+3CYDC4aTccDrn6ojG54MnEvG00GoVmWLIRNZ7wTCwDHYBsdACy0QHIhiuRETxlICWpMMhGZHmqS8qH6JLyGegAZKMDkI0uKf8X4SWlaZo+Pp1bRrwlJU8ZKLIvUjKh0WiQ3sRUbNVq9c5Ebew7KEo2m/1p4jJ4qAmDaqDQBzj5XyiAT4VCQezJigAU+IDU+z8vJFnGWeC+bKQV/5VZ71FV6L7PA3gg3tXrdQ+DgLhC+75Wq3no69P3MC0NFQpx2lL04Ql9gHK1bRDjsSBIvScBnDTk1WrlGIZBorIDEYJj+rhdgnQ67VmWRe0zlplXl81vcyEt0rSoYDUAAAAASUVORK5CYII=',
+					api: okxProvider,
+					chainRef: this.chainRef,
+				}),
+			)
+		}
+
+		if (unisat) {
+			wallets.push(
+				new UnisatWallet({
+					id: 'unisat',
+					name: 'Unisat Wallet',
+					icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTUuNzcgMTQ3LjciIHhtbG5zOnY9Imh0dHBzOi8vdmVjdGEuaW8vbmFubyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJBIiB4MT0iMTA2Ljk4NSIgeTE9IjMwLjc4IiB4Mj0iMTMuMDUzIiB5Mj0iNzIuNTI0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMjAxYzFiIi8+PHN0b3Agb2Zmc2V0PSIuMzYiIHN0b3AtY29sb3I9IiM3NzM5MGQiLz48c3RvcCBvZmZzZXQ9Ii42NyIgc3RvcC1jb2xvcj0iI2VhODEwMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y0Yjg1MiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJCIiB4MT0iMTEuMzgxIiB5MT0iMTE4LjE2NyIgeDI9IjEyMC4yMzIiIHkyPSI4NS43NzEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxZjFkMWMiLz48c3RvcCBvZmZzZXQ9Ii4zNyIgc3RvcC1jb2xvcj0iIzc3MzkwZCIvPjxzdG9wIG9mZnNldD0iLjY3IiBzdG9wLWNvbG9yPSIjZWE4MTAxIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjRmYjUyIi8+PC9saW5lYXJHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9IkMiIGN4PSI1My4wMSIgY3k9IjQ1Ljg0IiBmeD0iNTMuMDEiIGZ5PSI0NS44NCIgcj0iMTEuMTMiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAwKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2Y0Yjg1MiIvPjxzdG9wIG9mZnNldD0iLjMzIiBzdG9wLWNvbG9yPSIjZWE4MTAxIi8+PHN0b3Agb2Zmc2V0PSIuNjQiIHN0b3AtY29sb3I9IiM3NzM5MGQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyMTFjMWQiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNODEuNjYgMTMuMjlsMzAuMzEgMzAuMDJjMi41OCAyLjU1IDMuODUgNS4xMyAzLjgxIDcuNzNzLTEuMTUgNC45Ny0zLjMyIDcuMTJjLTIuMjcgMi4yNS00LjcyIDMuMzktNy4zNCAzLjQ0LTIuNjIuMDQtNS4yMi0xLjIyLTcuOC0zLjc3bC0zMS0zMC43Yy0zLjUyLTMuNDktNi45Mi01Ljk2LTEwLjE5LTcuNDFzLTYuNzEtMS42OC0xMC4zMS0uNjhjLTMuNjEuOTktNy40OCAzLjU0LTExLjYzIDcuNjQtNS43MiA1LjY3LTguNDUgMTAuOTktOC4xNyAxNS45NnMzLjEyIDEwLjEzIDguNTEgMTUuNDZsMzEuMjUgMzAuOTZjMi42MSAyLjU4IDMuODkgNS4xNiAzLjg1IDcuNzItLjA0IDIuNTctMS4xNiA0Ljk0LTMuMzcgNy4xMy0yLjIgMi4xOC00LjYzIDMuMzItNy4yNyAzLjQxcy01LjI3LTEuMTYtNy44Ny0zLjc0TDIwLjgxIDczLjU2Yy00LjkzLTQuODgtOC40OS05LjUtMTAuNjgtMTMuODZzLTMuMDEtOS4yOS0yLjQ0LTE0Ljc5Yy41MS00LjcxIDIuMDItOS4yNyA0LjU0LTEzLjY5IDIuNTEtNC40MiA2LjExLTguOTQgMTAuNzgtMTMuNTcgNS41Ni01LjUxIDEwLjg3LTkuNzMgMTUuOTMtMTIuNjdDNDMuOTkgMi4wNCA0OC44OC40MSA1My42LjA3YzQuNzMtLjM0IDkuMzkuNiAxNCAyLjgyczkuMjkgNS42OCAxNC4wNSAxMC40eiIgZmlsbD0idXJsKCNBKSIvPjxwYXRoIGQ9Ik0zNC4xMSAxMzQuNDJMMy44MSAxMDQuNEMxLjIzIDEwMS44NC0uMDQgOTkuMjcgMCA5Ni42N3MxLjE1LTQuOTcgMy4zMi03LjEyYzIuMjctMi4yNSA0LjcyLTMuMzkgNy4zNC0zLjQ0IDIuNjItLjA0IDUuMjIgMS4yMSA3LjggMy43N2wzMC45OSAzMC43YzMuNTMgMy40OSA2LjkyIDUuOTYgMTAuMTkgNy40MXM2LjcxIDEuNjcgMTAuMzIuNjggNy40OC0zLjU0IDExLjYzLTcuNjVjNS43Mi01LjY3IDguNDUtMTAuOTkgOC4xNy0xNS45NnMtMy4xMi0xMC4xMy04LjUxLTE1LjQ3TDY0LjYgNzMuMjRjLTIuNjEtMi41OC0zLjg5LTUuMTYtMy44NS03LjcyLjA0LTIuNTcgMS4xNi00Ljk0IDMuMzctNy4xMyAyLjItMi4xOCA0LjYzLTMuMzIgNy4yNy0zLjQxczUuMjcgMS4xNiA3Ljg3IDMuNzRsMTUuNyAxNS40MWM0LjkzIDQuODggOC40OSA5LjUgMTAuNjggMTMuODZzMy4wMSA5LjI5IDIuNDQgMTQuNzljLS41MSA0LjcxLTIuMDIgOS4yNy00LjU0IDEzLjY5LTIuNTEgNC40Mi02LjExIDguOTQtMTAuNzggMTMuNTctNS41NiA1LjUxLTEwLjg3IDkuNzMtMTUuOTMgMTIuNjdzLTkuOTUgNC41OC0xNC42OCA0LjkyLTkuMzktLjYtMTQtMi44Mi05LjI5LTUuNjgtMTQuMDUtMTAuNHoiIGZpbGw9InVybCgjQikiLz48Y2lyY2xlIGN4PSI1My4wMSIgY3k9IjQ1LjgzIiByPSIxMS4xMyIgZmlsbD0idXJsKCNDKSIvPjwvc3ZnPg==',
+					api: unisat,
+					chainRef: this.chainRef,
+				}),
+			)
+		}
+
+		if (xverseProvider) {
+			wallets.push(new XverseWallet({ xverse: xverseProvider, chainRef: this.chainRef }))
+		}
+
+		this.setWallets(wallets)
+	}
+
+	protected stopListeners(): void {
+		// No listeners to stop
+	}
+}

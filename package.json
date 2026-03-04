@@ -1,0 +1,52 @@
+{
+	"name": "@trustwallet/trust-connect-sdk",
+	"version": "0.0.0-alpha.11",
+	"description": "TrustConnect SDK - Multi-chain wallet connection library",
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"wallet",
+		"bitcoin",
+		"ethereum",
+		"solana"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"packageManager": "pnpm@10.26.2",
+	"scripts": {
+		"build": "pnpm --filter \"./packages/core/**\" run build && pnpm --filter \"./packages/types/**\" run build && pnpm --filter \"./packages/**\" run build",
+		"watch": "pnpm --filter \"./packages/**\" --parallel run dev",
+		"clean": "pnpm --filter \"./packages/**\" run clean",
+		"clean:all": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find . -name 'dist' -type d -prune -exec rm -rf '{}' + && find . -name '.turbo' -type d -prune -exec rm -rf '{}' +",
+		"test": "pnpm --filter \"./packages/**\" run test",
+		"dev": "pnpm --filter \"./playground/\" run dev",
+		"dev:all": "pnpm --parallel -r --filter \"./packages/**\" --filter \"./playground\" run dev",
+		"test:watch": "pnpm --filter \"./packages/**\" --parallel run test:watch",
+		"test:coverage": "pnpm --filter \"./packages/**\" run test:coverage",
+		"format": "pnpm dlx @biomejs/biome format packages --write",
+		"lint": "pnpm dlx @biomejs/biome lint packages",
+		"check": "pnpm dlx @biomejs/biome check packages",
+		"bundle:analyze": "pnpm build && node scripts/analyze-bundle.mjs",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "pnpm build && changeset publish"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.10",
+		"@changesets/cli": "2.29.8",
+		"esbuild": "0.27.2",
+		"typescript": "5.9.3",
+		"vitest": "4.0.16"
+	},
+	"pnpm": {
+		"overrides": {
+			"viem": "2.43.3",
+			"react": "19.2.3",
+			"react-dom": "19.2.3",
+			"@types/react": "19.2.7",
+			"@types/react-dom": "19.2.3",
+			"@tanstack/react-query": "5.90.15"
+		}
+	}
+}

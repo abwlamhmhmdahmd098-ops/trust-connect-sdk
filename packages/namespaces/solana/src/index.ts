@@ -1,0 +1,7 @@
+import './types/augmentation'
+export { createSolana } from './namespace'
+export { SolanaStandardWallet } from './wallet'
+export { SOLANA_SCOPE } from './constants'
+export { mainnet, devnet, testnet } from './chains'
+export { SolanaAddress, SolanaChainId, SolanaProvider } from '@trustwallet/connect-solana-types'
+export { CreateSolanaOptions } from './types/config'

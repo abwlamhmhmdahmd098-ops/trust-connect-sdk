@@ -1,0 +1,35 @@
+{
+	"name": "@trustwallet/connect-core",
+	"version": "0.0.0-alpha.11",
+	"description": "Core functionality for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"core"
+	],
+	"author": "",
+	"license": "Apache-2.0"
+}

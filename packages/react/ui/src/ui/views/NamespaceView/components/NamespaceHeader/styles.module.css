@@ -1,0 +1,34 @@
+.spacer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.sectionTitle {
+	font-size: 14px;
+	font-weight: 500;
+	margin: 0;
+	color: var(--tcui-text-secondary);
+	letter-spacing: 0;
+}
+
+.badge {
+	background: var(--tcui-bg-secondary);
+	border: 1px solid var(--tcui-border);
+	border-radius: 6px;
+	padding: 4px 10px;
+	font-size: 12px;
+	font-weight: 500;
+	color: var(--tcui-text-secondary);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.badgeIcon {
+	width: 16px;
+	height: 16px;
+	border-radius: 4px;
+}

@@ -1,0 +1,72 @@
+.namespaceButton {
+	background: var(--tcui-card);
+	border: 1px solid var(--tcui-border);
+	border-radius: var(--tcui-radius);
+	padding: 12px 14px;
+	height: 64px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	position: relative;
+}
+
+.namespaceButton:hover {
+	background: var(--tcui-card-hover);
+}
+
+.namespaceButton:active {
+	transform: scale(0.99);
+}
+
+.icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--tcui-bg-secondary);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	flex-shrink: 0;
+	font-weight: 700;
+	font-size: 16px;
+	color: var(--tcui-accent);
+	text-transform: uppercase;
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex: 1;
+	min-width: 0;
+}
+
+.name {
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.4;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.connectedWith {
+	font-size: 12px;
+	color: var(--tcui-text-secondary);
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.connectedWalletIcon {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+}
+
+.namespaceBar:hover :global(.tcui-button-primary) {
+	background: var(--tcui-connect-hover);
+}

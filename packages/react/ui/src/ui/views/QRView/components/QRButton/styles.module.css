@@ -1,0 +1,32 @@
+.button {
+	border: none;
+	background: var(--tcui-connect-bg);
+	color: var(--tcui-connect-text);
+	border-radius: var(--tcui-radius-full);
+	padding: 0 16px;
+	height: 36px;
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	transition: all 0.15s ease;
+	white-space: nowrap;
+	font-family: inherit;
+	width: 85%;
+}
+
+.button:hover:not(:disabled) {
+	background: var(--tcui-connect-hover);
+}
+
+.button:active:not(:disabled) {
+	transform: scale(0.98);
+}
+
+.button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}

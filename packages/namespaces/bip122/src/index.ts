@@ -1,0 +1,7 @@
+import './types/augmentation'
+export { createBIP122 } from './namespace'
+export { BitcoinStandardWallet } from './wallets/wallet-standard/wallet'
+export { BIP122_SCOPE } from './constants'
+export { mainnet, testnet, regtest } from './chains'
+export type { BIP122Address, BIP122ChainId, BIP122Provider } from '@trustwallet/connect-bip122-types'
+export type { CreateBIP122Options } from './types/config'

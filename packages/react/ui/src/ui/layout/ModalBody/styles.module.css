@@ -1,0 +1,15 @@
+.body {
+	padding: 20px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+	.body {
+		padding: 20px;
+		flex: 1;
+	}
+}

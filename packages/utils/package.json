@@ -1,0 +1,39 @@
+{
+	"name": "@trustwallet/connect-utils",
+	"version": "0.0.0-alpha.11",
+	"description": "Utility functions for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./encoding": {
+			"types": "./dist/encoding/index.d.ts",
+			"import": "./dist/encoding/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"utils"
+	],
+	"author": "",
+	"license": "Apache-2.0"
+}

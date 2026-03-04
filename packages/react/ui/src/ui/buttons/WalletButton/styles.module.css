@@ -1,0 +1,123 @@
+.walletButton {
+	background: var(--tcui-card);
+	border: 1px solid var(--tcui-border);
+	border-radius: var(--tcui-radius);
+	padding: 12px 14px;
+	min-height: 64px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	position: relative;
+}
+
+.walletButton:hover {
+	background: var(--tcui-card-hover);
+}
+
+.walletButton:active {
+	transform: scale(0.99);
+}
+
+.walletButton[data-active='true'] {
+	border: 1px solid var(--tcui-accent);
+	background: var(--tcui-card-hover);
+}
+
+[data-tcui-theme='light'] .walletButton[data-active='true'] {
+	border-color: var(--tcui-connect-text);
+}
+
+.walletButton[data-variant='walletconnect'] {
+	border-color: var(--tcui-border);
+	background: var(--tcui-card);
+}
+
+.walletButton[data-variant='walletconnect']:hover {
+	background: var(--tcui-card-hover);
+}
+
+.walletButton[data-disabled='true'] {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.walletButton[data-disabled='true']:hover {
+	background: var(--tcui-card);
+	transform: none;
+}
+
+.walletButton[data-disabled='true']:active {
+	transform: none;
+}
+
+.walletButton[data-disabled='true'] :global(.tcui-button) {
+	cursor: not-allowed;
+}
+
+.icon {
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.icon img {
+	width: 100%;
+	height: 100%;
+}
+
+.meta {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	flex: 1;
+	min-width: 0;
+}
+
+.name {
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 1.4;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.namespaces {
+	display: flex;
+	align-items: center;
+	margin-top: 0.2px;
+}
+
+.namespaces img {
+	width: 15px;
+	height: 15px;
+	border-radius: 4px;
+	flex-shrink: 0;
+	margin-left: -3px;
+}
+
+.namespaces img:first-child {
+	margin-left: 0;
+}
+
+.error {
+	font-size: 12px;
+	color: var(--tcui-danger);
+	line-height: 1.4;
+	margin-top: 2px;
+}
+
+.walletButton:hover :global(.tcui-button-primary) {
+	background: var(--tcui-connect-hover);
+}
+
+.walletButton:hover :global(.tcui-button:not(.tcui-button-primary)) {
+	background: var(--tcui-disconnect-hover);
+}

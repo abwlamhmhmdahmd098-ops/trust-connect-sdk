@@ -1,0 +1,30 @@
+{
+	"name": "@trustwallet/connect-bip122-types",
+	"version": "0.0.0-alpha.11",
+	"description": "TypeScript types for Bitcoin namespace in TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"clean": "rm -rf dist"
+	},
+	"peerDependencies": {
+		"@trustwallet/connect-core": "workspace:*"
+	},
+	"devDependencies": {
+		"typescript": "5.9.3"
+	},
+	"author": "",
+	"license": "Apache-2.0"
+}

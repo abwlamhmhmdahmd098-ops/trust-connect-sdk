@@ -1,0 +1,6 @@
+import './types/augmentation'
+export { createEIP155 } from './namespace'
+export { EIP155Wallet } from './wallet'
+export { EIP155_SCOPE } from './constants'
+export type { EIP155Provider, EIP155Address, EIP155ChainId } from '@trustwallet/connect-eip155-types'
+export type { CreateEIP155Options, EIP1193Provider } from './types/config'

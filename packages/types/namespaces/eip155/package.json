@@ -1,0 +1,39 @@
+{
+	"name": "@trustwallet/connect-eip155-types",
+	"version": "0.0.0-alpha.11",
+	"description": "TypeScript types for EIP155 namespace in TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"eip155",
+		"types"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"peerDependencies": {
+		"@trustwallet/connect-core": "workspace:*"
+	},
+	"devDependencies": {
+		"typescript": "5.9.3"
+	}
+}

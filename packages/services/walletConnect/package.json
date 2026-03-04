@@ -1,0 +1,58 @@
+{
+	"name": "@trustwallet/connect-walletconnect",
+	"version": "0.0.0-alpha.11",
+	"description": "WalletConnect integration for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./react": {
+			"types": "./dist/react/index.d.ts",
+			"import": "./dist/react/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist"
+	},
+	"dependencies": {
+		"@trustwallet/connect-core": "workspace:*",
+		"@trustwallet/connect-bip122-types": "workspace:*",
+		"@trustwallet/connect-eip155-types": "workspace:*",
+		"@trustwallet/connect-solana-types": "workspace:*",
+		"@trustwallet/connect-utils": "workspace:*",
+		"@walletconnect/sign-client": "2.23.1",
+		"@walletconnect/types": "2.23.1"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0"
+	},
+	"peerDependenciesMeta": {
+		"react": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@trustwallet/connect-headless": "workspace:*",
+		"@types/react": "19.2.7",
+		"react": "19.2.3"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"walletconnect"
+	],
+	"author": "",
+	"license": "Apache-2.0"
+}

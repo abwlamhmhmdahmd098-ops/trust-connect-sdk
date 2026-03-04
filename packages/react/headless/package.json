@@ -1,0 +1,43 @@
+{
+	"name": "@trustwallet/connect-headless",
+	"version": "0.0.0-alpha.11",
+	"description": "React headless components and hooks for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"clean": "rm -rf dist"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"react",
+		"hooks"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0"
+	},
+	"dependencies": {
+		"@trustwallet/connect-core": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/react": "19.2.7",
+		"react": "19.2.3"
+	}
+}

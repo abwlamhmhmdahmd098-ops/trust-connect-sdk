@@ -1,0 +1,44 @@
+.searchContainer {
+	padding: 0 0 16px 0;
+	flex-shrink: 0;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.copyButton {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--tcui-bg-secondary);
+	border: 1px solid var(--tcui-border);
+	border-radius: var(--tcui-radius-full);
+	color: var(--tcui-text-secondary);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.copyButton:hover {
+	background: var(--tcui-card-hover);
+	color: var(--tcui-text);
+	border-color: var(--tcui-primary);
+}
+
+.copyButton:active {
+	transform: scale(0.95);
+}
+
+.copyButton:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+
+.copyButton[data-copied='true'] {
+	color: var(--tcui-accent);
+	border-color: var(--tcui-accent);
+	background: var(--tcui-connect-bg);
+}

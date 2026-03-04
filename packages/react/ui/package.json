@@ -1,0 +1,53 @@
+{
+	"name": "@trustwallet/connect-react",
+	"version": "0.0.0-alpha.11",
+	"description": "React modal UI for TrustConnect SDK",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"bin": {
+		"connect-ui": "./cli.js"
+	},
+	"files": [
+		"dist",
+		"src",
+		"cli.js",
+		"README.md"
+	],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"clean": "rm -rf dist"
+	},
+	"keywords": [
+		"trust",
+		"connect",
+		"sdk",
+		"react",
+		"modal"
+	],
+	"author": "",
+	"license": "Apache-2.0",
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0"
+	},
+	"dependencies": {
+		"@trustwallet/connect-ui-logic": "workspace:*",
+		"cuer": "0.0.3"
+	},
+	"devDependencies": {
+		"@types/react": "19.2.7",
+		"@types/react-dom": "19.2.3",
+		"react": "19.2.3",
+		"react-dom": "19.2.3",
+		"tsup": "8.5.1"
+	}
+}

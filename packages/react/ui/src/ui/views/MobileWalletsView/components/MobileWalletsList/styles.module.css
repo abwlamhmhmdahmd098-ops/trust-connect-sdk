@@ -1,0 +1,35 @@
+.grid {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	overflow-y: auto;
+	flex: 1;
+	padding-right: 4px;
+}
+
+.grid::-webkit-scrollbar {
+	width: 6px;
+}
+
+.grid::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.grid::-webkit-scrollbar-thumb {
+	background: var(--tcui-border);
+	border-radius: 3px;
+}
+
+.grid::-webkit-scrollbar-thumb:hover {
+	background: var(--tcui-text-secondary);
+}
+
+.loadingMore {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	text-align: center;
+	color: var(--tcui-text-secondary);
+	font-size: 13px;
+}

@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+
+  // Force Biome as formatter in this workspace
+  "[javascript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[javascriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescript]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[typescriptreact]": { "editor.defaultFormatter": "biomejs.biome" },
+  "[json]": { "editor.defaultFormatter": "biomejs.biome" },
+  // Run Biome fixes on save (no other fixer)
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit"
+  },
+
+  // Only run if Biome config exists (avoids random folders)
+  "biome.requireConfiguration": true,
+  "editor.defaultFormatter": "biomejs.biome"
+}

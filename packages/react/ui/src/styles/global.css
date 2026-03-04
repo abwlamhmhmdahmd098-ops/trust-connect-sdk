@@ -1,0 +1,132 @@
+:root,
+[data-tcui-theme='light'] {
+	--tcui-font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--tcui-bg: #f9fafb;
+	--tcui-bg-secondary: #f3f4f6;
+	--tcui-card: #ffffff;
+	--tcui-card-hover: #f9fafb;
+	--tcui-text: #111827;
+	--tcui-text-secondary: #6b7280;
+	--tcui-accent: #0500FF;
+	--tcui-border: #e5e7eb;
+	--tcui-success: #22c55e;
+	--tcui-danger: #dc2626;
+	--tcui-connect-bg: #eef2ff;
+	--tcui-connect-text: #0500FF;
+	--tcui-connect-hover: #e0e7ff;
+	--tcui-disconnect-bg: #f3f4f6;
+	--tcui-disconnect-text: #6b7280;
+	--tcui-disconnect-hover: #e5e7eb;
+	--tcui-radius: 14px;
+	--tcui-radius-sm: 8px;
+	--tcui-radius-lg: 20px;
+	--tcui-radius-full: 999px;
+	--tcui-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+	--tcui-primary: #0500FF;
+}
+
+[data-tcui-theme='dark'] {
+	--tcui-bg: #121213;
+	--tcui-bg-secondary: #18181a;
+	--tcui-card: #161618;
+	--tcui-card-hover: #1f1f23;
+	--tcui-text: #eef5ef;
+	--tcui-text-secondary: #b3c1b6;
+	--tcui-accent: #48ff91;
+	--tcui-border: #2a2a2e;
+	--tcui-success: #48ff91;
+	--tcui-danger: #ff7d7d;
+	--tcui-connect-bg: rgba(72, 255, 145, 0.12);
+	--tcui-connect-text: #48ff91;
+	--tcui-connect-hover: rgba(72, 255, 145, 0.18);
+	--tcui-disconnect-bg: #242427;
+	--tcui-disconnect-text: #9ca4a2;
+	--tcui-disconnect-hover: #2e2e33;
+	--tcui-radius: 14px;
+	--tcui-radius-sm: 8px;
+	--tcui-radius-lg: 20px;
+	--tcui-radius-full: 999px;
+	--tcui-shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
+	--tcui-primary: #48ff91;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* Shared utility classes for components that still need them */
+.tcui-button {
+	border: none;
+	border-radius: var(--tcui-radius-full);
+	padding: 0 16px;
+	height: 36px;
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	transition: all 0.15s ease;
+	white-space: nowrap;
+	font-family: inherit;
+	min-width: fit-content;
+	background: var(--tcui-disconnect-bg);
+	color: var(--tcui-disconnect-text);
+}
+
+.tcui-button[data-loading='true'] {
+	min-width: 90px;
+	padding: 0;
+}
+
+.tcui-button:hover:not(:disabled) {
+	background: var(--tcui-disconnect-hover);
+}
+
+.tcui-button:active:not(:disabled) {
+	transform: scale(0.98);
+}
+
+.tcui-button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.tcui-button-primary {
+	background: var(--tcui-connect-bg);
+	color: var(--tcui-connect-text);
+}
+
+.tcui-button-primary:hover:not(:disabled) {
+	background: var(--tcui-connect-hover);
+}
+
+.tcui-check-icon {
+	width: 14px;
+	height: 14px;
+	color: var(--tcui-success);
+	flex-shrink: 0;
+}
+
+[data-tcui-theme='light'] .tcui-check-icon {
+	color: var(--tcui-connect-text);
+}
+
+.tcui-spinner {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: 2px solid var(--tcui-border);
+	border-top-color: var(--tcui-accent);
+	animation: tcui-spin 0.7s linear infinite;
+}
+
+@keyframes tcui-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
