@@ -19,6 +19,7 @@ const projectId = import.meta.env.VITE_WALLETCONNECT_ID
 
 const eip155 = createEIP155({
 	chains: [mainnet, polygon],
+	rpcUrls: { 'eip155:1': ['https://ethereum-rpc.publicnode.com'] },
 })
 
 const solana = createSolana({
