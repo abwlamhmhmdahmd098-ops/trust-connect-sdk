@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-ui-logic",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "React UI logic layer for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-headless",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "React headless components and hooks for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",
