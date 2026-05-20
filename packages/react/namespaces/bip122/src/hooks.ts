@@ -76,7 +76,7 @@ export function useSignMessage(options: UseSignMessageOptions = {}) {
 	})
 }
 
-export function useSignPsbt(options: UseSignPsbtOptions) {
+export function useSignPsbt(options: UseSignPsbtOptions = {}) {
 	const { client } = useTrustConnectContext()
 	const { mutationOptions } = options
 
@@ -133,7 +133,7 @@ export function useSignPsbt(options: UseSignPsbtOptions) {
 	})
 }
 
-export function useSendTransfer(options: UseSendTransferOptions) {
+export function useSendTransfer(options: UseSendTransferOptions = {}) {
 	const { client } = useTrustConnectContext()
 	const { mutationOptions } = options
 

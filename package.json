@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/trust-connect-sdk",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "TrustConnect SDK - Multi-chain wallet connection library",
 	"keywords": [
 		"trust",

@@ -1,4 +1,4 @@
-# TrustConnect SDK (Alpha)
+# TrustConnect SDK
 
 A [CAIP](https://chainagnostic.org/) compliant, multi-chain wallet connection SDK.
 
@@ -408,7 +408,7 @@ The Bitcoin React package provides hooks for Bitcoin wallet interactions.
 ### Sign Messages
 
 ```tsx
-import { useSignMessage, mainnet } from '@trustwallet/connect-bip122-react'
+import { useSignMessage } from '@trustwallet/connect-bip122-react'
 import { useConnection } from '@trustwallet/connect-react'
 
 function BitcoinSignMessage() {
@@ -420,9 +420,7 @@ function BitcoinSignMessage() {
 		isPending,
 		isSuccess,
 		error,
-	} = useSignMessage({
-		chain: mainnet,
-	})
+	} = useSignMessage()
 
 	const handleSign = () => {
 		if (!isConnected) return
@@ -452,35 +450,30 @@ function BitcoinSignMessage() {
 ### Sign and Send PSBTs
 
 ```tsx
-import { useSignPsbt, useSendTransfer, mainnet } from '@trustwallet/connect-bip122-react'
+import { useSignPsbt, useSendTransfer } from '@trustwallet/connect-bip122-react'
 
 function BitcoinTransaction() {
 	// Sign PSBT (Partially Signed Bitcoin Transaction)
-	const { mutate: signPsbt, isPending: isSigning } = useSignPsbt({
-		chain: mainnet
-	})
+	const { mutate: signPsbt, isPending: isSigning } = useSignPsbt({})
 
 	// Send transfer
-	const { mutateAsync: sendTransfer, isPending: isSending } = useSendTransfer({
-		chain: mainnet
-	})
+	const { mutateAsync: sendTransfer, isPending: isSending } = useSendTransfer({})
 
 	const handleSignPsbt = () => {
 		signPsbt({
 			psbt: 'cHNidP8BA...', // Base64 encoded PSBT
 			signInputs: [
-				{ index: 0, sighashTypes: [1] }
+				{ index: 0, sighashType: 1 }
 			],
-			broadcast: false, // Don't broadcast after signing
+			finalize: false, // Don't finalize after signing
 		})
 	}
 
 	const handleTransfer = async () => {
 		try {
 			const result = await sendTransfer({
-				recipient: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
-				amount: '10000', // satoshis
-				memo: 'Payment for services',
+				toAddress: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+				satoshis: 10000,
 			})
 			console.log('Transaction ID:', result.txid)
 		} catch (error) {

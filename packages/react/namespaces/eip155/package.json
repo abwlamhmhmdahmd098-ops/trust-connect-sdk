@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-eip155-react",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "React hooks for EIP-155 (Ethereum) namespace in TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",

@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-core",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "Core functionality for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",

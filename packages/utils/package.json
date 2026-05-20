@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-utils",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "Utility functions for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",

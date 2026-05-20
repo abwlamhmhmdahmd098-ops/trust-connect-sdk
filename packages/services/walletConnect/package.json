@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-walletconnect",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "WalletConnect integration for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",

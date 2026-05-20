@@ -1,6 +1,6 @@
 {
 	"name": "@trustwallet/connect-eip155-core",
-	"version": "0.0.0-alpha.11",
+	"version": "0.0.0",
 	"description": "EIP-155 (Ethereum) namespace core implementation for TrustConnect SDK",
 	"type": "module",
 	"main": "./dist/index.js",
