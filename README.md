@@ -198,12 +198,16 @@ import { mainnet } from 'viem/chains'
 import { useConnection } from '@trustwallet/connect-react'
 
 function Balance() {
-	const { address } = useConnection({ namespaceId: 'eip155' })
+	const { address, isConnected } = useConnection({ namespaceId: 'eip155' })
 
 	const { data } = useEIP155Query({
 		chain: mainnet,
 		action: getBalance,
 		request: { address },
+		queryOptions: {
+			enabled: isConnected,
+			queryKey: [address],
+		},
 	})
 
 	return <p>Balance: {data?.toString()}</p>
@@ -454,10 +458,10 @@ import { useSignPsbt, useSendTransfer } from '@trustwallet/connect-bip122-react'
 
 function BitcoinTransaction() {
 	// Sign PSBT (Partially Signed Bitcoin Transaction)
-	const { mutate: signPsbt, isPending: isSigning } = useSignPsbt({})
+	const { mutate: signPsbt, isPending: isSigning } = useSignPsbt()
 
 	// Send transfer
-	const { mutateAsync: sendTransfer, isPending: isSending } = useSendTransfer({})
+	const { mutateAsync: sendTransfer, isPending: isSending } = useSendTransfer()
 
 	const handleSignPsbt = () => {
 		signPsbt({
@@ -525,13 +529,13 @@ function ThemeToggle() {
 If you want full control of the UI styles, copy the TrustConnect UI components into your app and edit them directly:
 
 ```bash
-npx @trustwallet/connect-ui add
+npx @trustwallet/connect-react add
 ```
 
 You can also choose a custom path:
 
 ```bash
-npx @trustwallet/connect-ui add --path ./src/components/trust
+npx @trustwallet/connect-react add --path ./src/components/trust
 ```
 
 This downloads the components and their styles so you can customize everything locally.
